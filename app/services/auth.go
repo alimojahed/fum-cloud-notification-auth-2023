@@ -134,13 +134,15 @@ func (s *Server) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResp
 func (s *Server) Validate(ctx context.Context, req *pb.ValidateRequest) (*pb.ValidateResponse, error) {
 	fmt.Println("in valll", req.Token)
 	claims, err := s.Jwt.ValidateToken(req.Token)
-	fmt.Println(err, claims, "><")
+	fmt.Println("token parsed")
 	if err != nil {
 		return &pb.ValidateResponse{
 			Status: http.StatusBadRequest,
 			Error:  err.Error(),
 		}, nil
 	}
+
+	fmt.Println(err, claims, "><")
 
 	var user models.User
 

@@ -52,9 +52,9 @@ func (w *JwtWrapper) ValidateToken(signedToken string) (claims *jwtClaims, err e
 		},
 	)
 	fmt.Println(token, " <<<<>>>> ", err)
-	//if err != nil {
-	//	return
-	//}
+	if err != nil {
+		return
+	}
 
 	claims, ok := token.Claims.(*jwtClaims)
 

@@ -52,13 +52,13 @@ func main() {
 		ExpirationHours: 24 * 365,
 	}
 
-	lis, err := net.Listen("tcp", c.Port)
+	lis, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0%s", c.Port))
 
 	if err != nil {
 		log.Fatalln("Failed to listing:", err)
 	}
 
-	fmt.Println("Auth Svc on", fmt.Sprintf("localhost:%d", 50051))
+	fmt.Println("Auth Svc on", fmt.Sprintf("localhost%s", c.Port))
 
 	s := services.Server{
 		H:   h,
